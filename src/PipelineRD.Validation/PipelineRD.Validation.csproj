@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFrameworks>netstandard2.0;netstandard2.1;</TargetFrameworks>
+    <PackageId>PipelineRD.Validation</PackageId>
+    <Authors>Eduardo Cabral</Authors>
+    <PackageDescription>The complementary validation package for PipelineRD. It uses Fluent Validation to do it.</PackageDescription>
+    <RepositoryUrl>https://github.com/eduardosbcabral/pipelineRD-validation</RepositoryUrl>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="10.3.3" />
+    <PackageReference Include="PipelineRD" Version="1.1.1-alpha.20210918.26" />
+  </ItemGroup>
+
+</Project>
