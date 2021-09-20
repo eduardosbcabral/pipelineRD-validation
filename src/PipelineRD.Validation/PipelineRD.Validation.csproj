@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentValidation" Version="10.3.3" />
+    <PackageReference Include="FluentValidation" Version="9.5.4" />
     <PackageReference Include="PipelineRD" Version="1.1.1-alpha.20210918.26" />
   </ItemGroup>
 
