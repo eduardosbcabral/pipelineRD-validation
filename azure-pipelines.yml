@@ -20,8 +20,6 @@ trigger:
     include:
     - release/*  
     - hotfix/*
-    - bugfix/*
-    - feature/*
   tags:
     include:
     - '*'
@@ -139,6 +137,7 @@ stages:
         failIfCoverageEmpty: true
     - task: DotNetCoreCLI@2
       displayName: 'Pack Nuget Package ($(BUILD_CONFIGURATION))'
+      condition: eq(variables['PackingNuget'], 'true')
       inputs:
         command: 'custom'
         projects: '$(MAIN_PROJECT_PATH)/*.csproj'
