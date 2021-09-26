@@ -8,11 +8,12 @@
     <PackageDescription>The complementary validation package for PipelineRD. It uses Fluent Validation to do it.</PackageDescription>
     <RepositoryUrl>https://github.com/eduardosbcabral/pipelineRD-validation</RepositoryUrl>
     <LangVersion>latest</LangVersion>
+    <PackageIconUrl>https://user-images.githubusercontent.com/29133996/134798452-de38b1d7-4a8a-4410-b60b-1814b7339a18.png</PackageIconUrl>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="9.5.4" />
-    <PackageReference Include="PipelineRD" Version="1.1.1-alpha.20210918.26" />
+    <PackageReference Include="PipelineRD" Version="1.1.4" />
   </ItemGroup>
 
 </Project>

@@ -38,7 +38,7 @@ namespace PipelineRD.Validation.Sample
                     x.InjectRequestValidators();
                 });
                 // localhost:{PORT}/docs
-                x.UseDocumentation(x =>
+                x.UseDocumentation("PipelineRD.Validation.Sample", x =>
                 {
                     var path = Path.Combine(Environment.ContentRootPath, "wwwroot", "docs");
                     x.UsePath(path);
