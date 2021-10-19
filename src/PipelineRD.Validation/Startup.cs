@@ -23,7 +23,7 @@ namespace PipelineRD.Test
 
     }
 
-    public class TestRequest : IPipelineRequest
+    public class TestRequest
     {
 
     }

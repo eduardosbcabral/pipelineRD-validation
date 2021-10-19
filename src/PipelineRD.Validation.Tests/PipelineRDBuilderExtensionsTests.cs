@@ -32,7 +32,7 @@ namespace PipelineRD.Validation.Tests
             Assert.Equal(ServiceLifetime.Singleton, service.Lifetime);
         }
 
-        class PipelineRDRequestTest : IPipelineRequest { }
+        class PipelineRDRequestTest { }
 
         class PipelineRDRequestTestValidator : AbstractValidator<PipelineRDRequestTest> { }
     }
