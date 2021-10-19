@@ -23,19 +23,14 @@ namespace PipelineRD.Validation
         public static async Task<RequestStepResult> ExecuteWithValidation<TContext, TRequest>(
             this IPipeline<TContext> pipeline,
             TRequest request,
-            IValidator<TRequest> validator = null,
+            IValidator validator = null,
             HttpStatusCode defaultValidationFailStatus = HttpStatusCode.BadRequest)
-            where TContext : BaseContext where TRequest : IPipelineRequest
+            where TContext : BaseContext
         {
             if(validator == null)
             {
                 var injectedValidator = pipeline.GetServiceProvider().GetService<IValidator<TRequest>>();
-                if (injectedValidator == null)
-                {
-                    throw new PipelineException($"[Pipeline][AddValidator] There is no validator injected in DI for this request type({request.GetType().Name}). Please pass a validator to the method 'ExecuteWithValidation' or inject it.");
-                }
-
-                validator = injectedValidator;
+                validator = injectedValidator ?? throw new PipelineException($"[Pipeline][AddValidator] There is no validator injected in DI for this request type({request.GetType().Name}). Please pass a validator to the method 'ExecuteWithValidation' or inject it.");
             }
 
             if (validator != null)
