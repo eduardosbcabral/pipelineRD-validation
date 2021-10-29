@@ -45,7 +45,7 @@ namespace PipelineRD.Validation
                             .WithMessage(p.ErrorMessage)
                             .WithProperty(p.PropertyName)
                             .Build())
-                        .ToArray();
+                        .ToList();
 
                     return RequestStepHandlerResultBuilder.Instance()
                         .WithErrors(errors)

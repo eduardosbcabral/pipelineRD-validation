@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="9.5.4" />
-    <PackageReference Include="PipelineRD" Version="1.1.7" />
+    <PackageReference Include="PipelineRD" Version="1.1.10" />
   </ItemGroup>
 
 </Project>
