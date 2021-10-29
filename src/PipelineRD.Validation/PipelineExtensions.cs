@@ -27,30 +27,35 @@ namespace PipelineRD.Validation
             HttpStatusCode defaultValidationFailStatus = HttpStatusCode.BadRequest)
             where TContext : BaseContext
         {
-            if(validator == null)
+            // Make sure that we execute the validation when
+            // it is not the PipelineDiagram
+            if(pipeline.GetType() == typeof(IPipeline<TContext>)) 
             {
-                var injectedValidator = pipeline.GetServiceProvider().GetService<IValidator<TRequest>>();
-                validator = injectedValidator ?? throw new PipelineException($"[Pipeline][AddValidator] There is no validator injected in DI for this request type({request.GetType().Name}). Please pass a validator to the method 'ExecuteWithValidation' or inject it.");
-            }
-
-            if (validator != null)
-            {
-                var validationContext = new ValidationContext<TRequest>(request);
-                var validateResult = validator.Validate(validationContext);
-
-                if (!validateResult.IsValid)
+                if(validator == null)
                 {
-                    var errors = validateResult.Errors
-                        .Select(p => RequestErrorBuilder.Instance()
-                            .WithMessage(p.ErrorMessage)
-                            .WithProperty(p.PropertyName)
-                            .Build())
-                        .ToList();
+                    var injectedValidator = pipeline.GetServiceProvider().GetService<IValidator<TRequest>>();
+                    validator = injectedValidator ?? throw new PipelineException($"[Pipeline][AddValidator] There is no validator injected in DI for this request type({request.GetType().Name}). Please pass a validator to the method 'ExecuteWithValidation' or inject it.");
+                }
 
-                    return RequestStepHandlerResultBuilder.Instance()
-                        .WithErrors(errors)
-                        .WithHttpStatusCode(defaultValidationFailStatus)
-                        .Build();
+                if (validator != null)
+                {
+                    var validationContext = new ValidationContext<TRequest>(request);
+                    var validateResult = validator.Validate(validationContext);
+
+                    if (!validateResult.IsValid)
+                    {
+                        var errors = validateResult.Errors
+                            .Select(p => RequestErrorBuilder.Instance()
+                                .WithMessage(p.ErrorMessage)
+                                .WithProperty(p.PropertyName)
+                                .Build())
+                            .ToList();
+
+                        return RequestStepHandlerResultBuilder.Instance()
+                            .WithErrors(errors)
+                            .WithHttpStatusCode(defaultValidationFailStatus)
+                            .Build();
+                    }
                 }
             }
 
