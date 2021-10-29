@@ -29,7 +29,7 @@ namespace PipelineRD.Validation
         {
             // Make sure that we execute the validation when
             // it is not the PipelineDiagram
-            if(pipeline.GetType() == typeof(IPipeline<TContext>)) 
+            if(pipeline.GetType() == typeof(Pipeline<TContext>)) 
             {
                 if(validator == null)
                 {
